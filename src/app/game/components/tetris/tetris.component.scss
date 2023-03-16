@@ -1,0 +1,36 @@
+:host {
+  display: block;
+  width: calc(30px * {{ size.cols }});
+}
+
+.tetris-board {
+  border-collapse: collapse;
+  margin: 0 auto;
+}
+
+.tetris-board td {
+  width: 30px;
+  height: 30px;
+  border: 1px solid #ccc;
+}
+
+.filled {
+  background-color: #333;
+}
+
+.app-tetris-piece {
+  display: inline-block;
+  margin-right: 10px;
+}
+
+.app-tetris-piece table {
+  margin-bottom: 10px;
+}
+
+.app-tetris-piece td {
+  width: 20px;
+  height: 20px;
+  border: 1px solid #ccc;
+}
+
+.filled {
