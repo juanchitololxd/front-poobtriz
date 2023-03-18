@@ -1,7 +1,0 @@
-<app-tetris-piece *ngFor="let piece of pieces" [piece]="piece"></app-tetris-piece>
-
-<table class="tetris-board">
-  <tr *ngFor="let row of board">
-    <td *ngFor="let cell of row" [ngClass]="{ 'filled': cell }"></td>
-  </tr>
-</table>
