@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-landing',
@@ -6,5 +7,21 @@ import { Component } from '@angular/core';
   styleUrls: ['./landing.component.scss']
 })
 export class LandingComponent {
+  constructor(private router: Router) { }
+
+  ngOnInit(): void {
+  }
+
+  irAPantalla1() {
+    this.router.navigate(['/pantalla1']);
+  }
+
+  irAPantalla2() {
+    this.router.navigate(['/pantalla2']);
+  }
+
+  irAPantalla3() {
+    this.router.navigate(['/pantalla3']);
+  }
 
 }
