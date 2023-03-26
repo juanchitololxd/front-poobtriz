@@ -3,10 +3,11 @@
         <h1 class="ventana-principal-title">POOBTRIZ</h1>
         <h2 class="ventana-principal-subtitle">Elige un modo de juego:</h2>
           <div class="ventana-principal-buttons">
-              <button href="#" class="btn btn-1"(click)="irAPantalla1()">Jugar sólo</button>
-              <button href="#" class="btn btn-2" (click)="irAPantalla2()">Crear partida en línea</button>
-              <button href="#" class="btn btn-3"(click)="irAPantalla3()">Conectarme a una partida</button>
+              <button href="#" class="btn btn-1" routerLink="/jugar-solo">Jugar solo</button>
+              <button href="#" class="btn btn-2" routerLink="/crear-partida">Crear partida en línea</button>
+              <button href="#" class="btn btn-3" routerLink="/conectarme-a-partida">Conectarme a partida</button>
           </div>
     </div> 
   </div>
-         
+
+  <router-outlet></router-outlet>
