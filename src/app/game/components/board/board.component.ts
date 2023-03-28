@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { Tablero } from 'src/app/shared/models/Tablero.model';
 import { Block } from '../../models/block.model';
 
 @Component({
@@ -8,14 +9,8 @@ import { Block } from '../../models/block.model';
 })
 export class BoardComponent {
   @Input() size: { rows: number; cols: number } = { rows: 20, cols: 10 };
-  board: Block[][] = [];
+  @Input() tablero!: Tablero;
 
   constructor() {
-    for (let i = 0; i < this.size.rows; i++) {
-      this.board.push([]);
-      for (let j = 0; j < this.size.cols; j++) {
-        this.board[i].push(new Block("red","blue"));
-      }
-    }
   }
 }
