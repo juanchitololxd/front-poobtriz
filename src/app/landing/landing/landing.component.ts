@@ -13,7 +13,7 @@ export class LandingComponent {
   }
 
   irAPantalla1() {
-    this.router.navigate(['/pantalla1']);
+    this.router.navigate(['/game']);
   }
 
   irAPantalla2() {
