@@ -3,6 +3,7 @@ import { RouterModule, PreloadAllModules } from '@angular/router';
 import { LandingComponent } from './landing/landing/landing.component';
 
 
+
 @NgModule({
   imports: [  RouterModule.forRoot([
     { path: '', component: LandingComponent},
