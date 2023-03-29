@@ -3,7 +3,8 @@ export class Tablero {
       public cols: number,
       public filas: number,
       public background: string[][],
-      public bgReborde: string[][]
+      public bgReborde: string[][],
+      public puntuacion: number
     ){}
 
 }

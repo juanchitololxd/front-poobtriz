@@ -14,11 +14,8 @@ export class GameComponent implements OnInit {
   public tablero!: Tablero | undefined;
   public lobby!: Lobby;
   public nick = "Jaime"; //TODO dinamizar
-  public codigo = 1; //TODO dinamizar
+  public codigo = 11111; //TODO dinamizar
   public ws: any;
-
-  constructor(){
-  }
 
   ngOnInit(): void {
     this.ws = new WebsocketBuilder(`ws://localhost:8081/game/${this.nick}/${this.codigo}`)
@@ -28,10 +25,27 @@ export class GameComponent implements OnInit {
     .onMessage((ws, e) => { this.onMessage(JSON.parse(e.data)) })
     .build();
 
+    document.addEventListener("keydown", (event) => {
+      switch (event.key) {
+        case "ArrowUp":
+          this.ws.send("up");
+          break;
+        case "ArrowDown":
+          this.ws.send("down");
+          break;
+        case "ArrowLeft":
+          this.ws.send("left");
+          break;
+        case "ArrowRight":
+          this.ws.send("right");
+          break;
+      }
+    });
   }
 
+
+
   onMessage(param: any){
-    console.log(this.lobby);
     this.lobby = param;
     this.tablero = this.lobby.players.find(p => p.nick == this.nick)?.tablero;
 
