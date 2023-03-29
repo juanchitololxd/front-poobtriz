@@ -1,6 +1,6 @@
-<div class="tetris-board">
-    <span *ngFor="let row of board">
-      <span *ngFor="let bloque of row"><app-block class="bloque" [color]="bloque.color" [reborde]="bloque.reborde"></app-block></span>
+<div class="tetris-board" *ngIf="tablero">
+    <span *ngFor="let row of tablero.background; let i =index">
+      <span *ngFor="let bloque of row; let j=index"><app-block class="bloque" [color]="bloque" [reborde]="tablero.bgReborde[i][j]"></app-block></span>
     </span>
 </div>
 
