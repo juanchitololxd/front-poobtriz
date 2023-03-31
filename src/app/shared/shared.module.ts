@@ -2,16 +2,21 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {ButtonModule} from 'primeng/button';
 import {TableModule} from 'primeng/table';
-
+import { BlockedComponent } from './components/blocked/blocked.component';
+import {ProgressBarModule} from 'primeng/progressbar';
 
 @NgModule({
-  declarations: [],
+  declarations: [
+    BlockedComponent
+  ],
   imports: [
-    CommonModule
+    CommonModule,
+    ProgressBarModule
   ],
   exports: [
     ButtonModule,
-    TableModule
+    TableModule,
+    BlockedComponent
 
   ]
 })
