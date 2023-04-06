@@ -6,7 +6,7 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-form-create-lobby',
   templateUrl: './form-create-lobby.component.html',
-  styleUrls: ['./form-create-lobby.component.css']
+  styleUrls: ['./form-create-lobby.component.scss']
 })
 export class FormCreateLobbyComponent {
   nombrePartida!: string;
