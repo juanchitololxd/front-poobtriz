@@ -6,6 +6,8 @@ import { LobbyRoutingModule } from './lobby-routing.module';
 import { FormCreateLobbyComponent } from './components/form-create-lobby/form-create-lobby.component';
 import { SharedModule } from '../shared/shared.module';
 import { HttpClientModule } from '@angular/common/http';
+import {CardModule} from 'primeng/card';
+
 
 
 
@@ -18,7 +20,8 @@ import { HttpClientModule } from '@angular/common/http';
     CommonModule,
     LobbyRoutingModule,
     SharedModule,
-    HttpClientModule
+    HttpClientModule,
+    CardModule
   ],
   providers: [LobbyService]
 })

@@ -1,10 +1,15 @@
-<form>
-    <label for="nombre">Creando partida</label>
-    <input type="text" id="nick" name="nick" [(ngModel)]="nombrePartida">
-  
-    <button (click)="crearPartida()">Crear</button>
-  </form>
-  
-  
-  
-  
+<div class="card">
+  <p-card>
+    <form>
+      <label for="nombre">Creando partida</label>
+      <input type="text" id="nick" name="nick" [(ngModel)]="nombrePartida">
+
+      <p-button (click)="crearPartida()">Crear</p-button>
+    </form>
+
+  </p-card>
+</div>
+
+
+
+

@@ -3,14 +3,16 @@ form {
     flex-direction: column;
     align-items: center;
     margin-top: 50px;
+    width: 50%;
+    margin-inline: auto;
   }
-  
+
   label {
     font-size: 1.2rem;
     font-weight: bold;
     margin-bottom: 10px;
   }
-  
+
   input[type="text"] {
     padding: 10px;
     border-radius: 5px;
@@ -18,7 +20,7 @@ form {
     width: 300px;
     font-size: 1rem;
   }
-  
+
   button[type="submit"] {
     padding: 10px;
     border-radius: 5px;
@@ -29,8 +31,13 @@ form {
     cursor: pointer;
     transition: background-color 0.3s ease;
   }
-  
+
   button[type="submit"]:hover {
     background-color: #0069d9;
   }
-  
+
+  .card {
+    display: flex;
+    justify-content: center;
+    margin-inline: auto;
+  }

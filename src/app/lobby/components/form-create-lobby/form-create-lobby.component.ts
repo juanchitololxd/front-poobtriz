@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { LobbyService } from 'src/app/lobby/services/lobby.service';
 import { Router } from '@angular/router';
+import { Lobby } from 'src/app/shared/models/Lobby.model';
 
 
 @Component({
@@ -19,12 +20,13 @@ export class FormCreateLobbyComponent {
   crearPartida() {
     const nick = JSON.parse(localStorage.getItem('nick')!);
     const lobby = {nombre: this.nombrePartida, admin: nick };
-    this.lobbyService.crearLobby(lobby).then(
-      (respuesta: any) => {
+    this.lobbyService.crearLobby(nick).then(
+
+      (respuesta: Lobby|undefined) => {
         localStorage.setItem('nick', nick); // Guardar el nick del usuario en el localStorage
-        this.router.navigate(['/lobby/' + respuesta.codigo]); // Redireccionar a la página del lobby creado
+        this.router.navigate(['/lobby/' + respuesta?.codigo]); // Redireccionar a la página del lobby creado
       }
-    ).catch((error: any) => {console.log(error)}
+
     );
   }
 }
