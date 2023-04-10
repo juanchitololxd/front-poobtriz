@@ -5,6 +5,8 @@ import { LobbyService } from './services/lobby.service';
 import { LobbyRoutingModule } from './lobby-routing.module';
 import { FormCreateLobbyComponent } from './components/form-create-lobby/form-create-lobby.component';
 import { SharedModule } from '../shared/shared.module';
+import { HttpClientModule } from '@angular/common/http';
+
 
 
 @NgModule({
@@ -15,7 +17,8 @@ import { SharedModule } from '../shared/shared.module';
   imports: [
     CommonModule,
     LobbyRoutingModule,
-    SharedModule
+    SharedModule,
+    HttpClientModule
   ],
   providers: [LobbyService]
 })

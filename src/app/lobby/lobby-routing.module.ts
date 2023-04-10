@@ -7,7 +7,7 @@ import { FormCreateLobbyComponent } from 'src/app/lobby/components/form-create-l
   imports: [  RouterModule.forChild([
     { path: 'create', component: FormCreateLobbyComponent },
     { path: ':id', component: LobbyComponent }
-    
+
   ])],
 
 

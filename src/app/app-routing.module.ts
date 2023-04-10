@@ -10,10 +10,7 @@ import { FormCreateLobbyComponent } from './lobby/components/form-create-lobby/f
   imports: [  RouterModule.forRoot([
     { path: '', component: LandingComponent},
     { path: 'game', loadChildren: () => import('./game/game.module').then(m => m.GameModule) },
-    { path: 'lobby', loadChildren: () => import('./lobby/lobby.module').then(m => m.LobbyModule) },
-    { path: 'lobby/create', component: FormCreateLobbyComponent}
-    
-
+    { path: 'lobby', loadChildren: () => import('./lobby/lobby.module').then(m => m.LobbyModule) }
   ],
   {
     preloadingStrategy: PreloadAllModules
