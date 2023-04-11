@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Lobby } from 'src/app/shared/models/Lobby.model';
+import { ActivatedRoute, ParamMap } from '@angular/router';
+import { Estado, Lobby } from 'src/app/shared/models/Lobby.model';
 import { Tablero } from 'src/app/shared/models/Tablero.model';
-import { WebsocketBuilder } from 'websocket-ts/lib';
+import { Websocket, WebsocketBuilder } from 'websocket-ts/lib';
 
 
 @Component({
@@ -13,17 +14,19 @@ export class GameComponent implements OnInit {
 
   public tablero!: Tablero | undefined;
   public lobby!: Lobby;
-  public nick = "Jaime"; //TODO dinamizar
-  public codigo = 11111; //TODO dinamizar
-  public ws: any;
+  public nick: string | null;
+  public ws!: Websocket;
+  blockedDocument = true;
+  constructor(
+    private route: ActivatedRoute){
+      this.nick = localStorage.getItem("username")
+  }
 
   ngOnInit(): void {
-    this.ws = new WebsocketBuilder(`ws://localhost:8081/game/${this.nick}/${this.codigo}`)
-    .onOpen((ws, e) => { console.log("ABIERTO"); })
-    .onClose((ws, e) => { console.log("CLOSED") })
-    .onError((ws, e) => { console.log("error") })
-    .onMessage((ws, e) => { this.onMessage(JSON.parse(e.data)) })
-    .build();
+    this.route.paramMap.subscribe((params: ParamMap) => {
+      this.instanceWS(params.get('id'));
+    });
+
 
     document.addEventListener("keydown", (event) => {
       switch (event.key) {
@@ -43,16 +46,24 @@ export class GameComponent implements OnInit {
     });
   }
 
+  instanceWS(codigo: any){
+    if (this.ws) this.ws.close();
 
-
-  onMessage(param: any){
-    this.lobby = param;
-    this.tablero = this.lobby.players.find(p => p.nick == this.nick)?.tablero;
-
+    this.ws = new WebsocketBuilder(`ws://localhost:8081/game/${this.nick}/${codigo}`)
+    .onOpen((ws, e) => { console.log("ABIERTO"); })
+    .onClose((ws, e) => { console.log("CLOSED") })
+    .onError((ws, e) => { console.log("error") })
+    .onMessage((ws, e) => { this.onMessage(JSON.parse(e.data)) })
+    .build();
   }
 
-  sendMsg(){
-    this.ws.send("Hola mundo");
+
+  onMessage(param: Lobby){
+    this.lobby = param;
+    if (this.lobby.estado.toString() == Estado[Estado.RUNNING]) this.blockedDocument = false;
+
+
+    this.tablero = this.lobby.players.find(p => p.nick == this.nick)?.tablero;
   }
 
 }
