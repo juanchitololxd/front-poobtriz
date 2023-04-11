@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { WebsocketBuilder } from 'websocket-ts/lib';
 
 @Component({
   selector: 'app-lobby',
@@ -8,18 +10,27 @@ import { Component, OnInit } from '@angular/core';
 
 export class LobbyComponent implements OnInit {
   codigoPartida!: string;
-
+  public ws: any;
   usuarios: String[]=[];
+  parameterValue: any;
 
 
-  constructor() { }
+
+  constructor(
+    private _router: Router,
+    private _activatedRoute: ActivatedRoute
+  ) { }
 
   ngOnInit(): void {
-    // Generar código de partida aleatorio
-    this.codigoPartida = Math.random().toString(36).substring(2, 8);
 
-    // Simular usuarios conectados
-    this.usuarios = ['Usuario 1', 'Usuario 2', 'Usuario 3'];
+    this._activatedRoute.params.subscribe((parameter : any) => {
+      this.codigoPartida = parameter.id;
+      this.ws = new WebsocketBuilder(`ws://localhost:8081/lobby/${localStorage.getItem('nick')!}/${this.codigoPartida}`)
+      .onClose((ws, e) => this._router.navigateByUrl(`/game/${this.codigoPartida}`)).build();
+    })
+
   }
+
+
 
 }
