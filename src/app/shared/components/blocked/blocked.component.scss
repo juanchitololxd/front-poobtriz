@@ -1,0 +1,9 @@
+.block {
+  margin-top: 15%;
+  margin-inline: 15%;
+
+  > span > :last-child {
+    font-size: 30px;
+    margin-inline: 13%;
+  }
+}
