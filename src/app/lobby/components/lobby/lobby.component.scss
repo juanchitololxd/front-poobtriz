@@ -1,0 +1,59 @@
+
+
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-image: linear-gradient(to bottom, #ff0000, #ff9999);
+  animation: cambiarFondo 10s linear infinite;
+}
+
+@keyframes cambiarFondo {
+    0% {
+      background-image: linear-gradient(to bottom, #e100ff, #e799ff);
+    }
+    50% {
+      background-image: linear-gradient(to bottom, #ff9999, #99ccff);
+    }
+    100% {
+      background-image: linear-gradient(to bottom, #f79b33, #e6c66f);
+    }
+} 
+
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+  
+h1 {
+    font-size: 4rem;
+    margin-bottom: 2rem;
+    color: #000000;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+  
+p {
+    font-size: 6rem;
+    margin-bottom: 2rem;
+    color: #070707;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+  
+button {
+    background-image: linear-gradient(#3c20dd, #14a2da);
+    color: #fff;
+    border: none;
+    padding: 1rem 2rem;
+    font-size: 1.5rem;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    transition: background-image 0.3s ease;
+}
+  
+button:hover {
+    background-image: linear-gradient(#14a2da, #3c20dd);
+}
+  

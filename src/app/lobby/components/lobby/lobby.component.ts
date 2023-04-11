@@ -31,6 +31,10 @@ export class LobbyComponent implements OnInit {
 
   }
 
+  comenzarPartida(): void {
+    // Lógica para comenzar la partida
+  }
+
 
 
 }

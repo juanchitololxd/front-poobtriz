@@ -1,11 +1,15 @@
-<div class="container">
-    <h1>Crea una partida en línea</h1>
-    <p>Tu código de partida es: {{ codigoPartida }}</p>
-    <div class="usuarios-conectados">
-      <h2>Usuarios conectados:</h2>
-      <ul>
-        <li *ngFor="let usuario of usuarios">{{ usuario }}</li>
-      </ul>
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Partida en Linea</title>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Tu código de partida es:</h1>
+      <p>{{ codigoPartida }}</p>
+      <button (click)="comenzarPartida()">Comenzar</button>
     </div>
-  </div>
+  </body>
+</html>
 
