@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Lobby } from 'src/app/shared/models/Lobby.model';
 import { WebsocketBuilder } from 'websocket-ts/lib';
 
 @Component({
@@ -13,6 +14,7 @@ export class LobbyComponent implements OnInit {
   public ws: any;
   usuarios: String[]=[];
   parameterValue: any;
+  lobby!: Lobby;
 
 
 
@@ -26,13 +28,14 @@ export class LobbyComponent implements OnInit {
     this._activatedRoute.params.subscribe((parameter : any) => {
       this.codigoPartida = parameter.id;
       this.ws = new WebsocketBuilder(`ws://localhost:8081/lobby/${localStorage.getItem('nick')!}/${this.codigoPartida}`)
-      .onClose((ws, e) => this._router.navigateByUrl(`/game/${this.codigoPartida}`)).build();
+      .onMessage((ws, e) => this.lobby = JSON.parse(e.data))
+      .onClose((ws, e) => this.comenzarPartida()).build();
     })
 
   }
 
   comenzarPartida(): void {
-    // Lógica para comenzar la partida
+    this._router.navigateByUrl(`/game/${this.codigoPartida}`)
   }
 
 

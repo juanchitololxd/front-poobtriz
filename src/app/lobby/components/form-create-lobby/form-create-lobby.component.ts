@@ -23,8 +23,11 @@ export class FormCreateLobbyComponent {
     this.lobbyService.crearLobby(nick).then(
 
       (respuesta: Lobby|undefined) => {
-        localStorage.setItem('nick', nick); // Guardar el nick del usuario en el localStorage
-        this.router.navigate(['/lobby/' + respuesta?.codigo]); // Redireccionar a la página del lobby creado
+        if (respuesta){
+          localStorage.setItem('nick', this.nombrePartida); // Guardar el nick del usuario en el localStorage
+          this.router.navigate(['/lobby/' + respuesta?.codigo]); // Redireccionar a la página del lobby creado
+        }
+
       }
 
     );

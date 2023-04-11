@@ -7,7 +7,7 @@ import { FormCreateLobbyComponent } from './components/form-create-lobby/form-cr
 import { SharedModule } from '../shared/shared.module';
 import { HttpClientModule } from '@angular/common/http';
 import {CardModule} from 'primeng/card';
-
+import { ChipModule } from 'primeng/chip';
 
 
 
@@ -21,7 +21,8 @@ import {CardModule} from 'primeng/card';
     LobbyRoutingModule,
     SharedModule,
     HttpClientModule,
-    CardModule
+    CardModule,
+    ChipModule
   ],
   providers: [LobbyService]
 })
