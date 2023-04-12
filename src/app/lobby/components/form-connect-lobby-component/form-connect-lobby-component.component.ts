@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { LobbyService } from '../../services/lobby.service';
+import { Lobby } from 'src/app/shared/models/Lobby.model';
 
 @Component({
   selector: 'app-form-connect-lobby-component',
@@ -8,23 +9,21 @@ import { LobbyService } from '../../services/lobby.service';
   styleUrls: ['./form-connect-lobby-component.component.scss']
 })
 export class FormConnectLobbyComponentComponent {
-  codigo: string = '';
-  nick: string = '';
+  codigo!: number;
+  nick!: string;
 
   constructor(private lobbyService: LobbyService, private router: Router) {}
 
   onSubmit() {
-    this.lobbyService.joinLobby(this.codigo).subscribe(
-      (response) => {
+    this.lobbyService.joinLobby(this.codigo).then(
+      (response: Lobby|undefined) => {
+      if (response){
         localStorage.setItem('nick', this.nick);
         this.router.navigate(['/lobby', response.codigo]);
-      },
-      (error) => {
-        if (error.status === 404) {
-          alert('La sala no existe');
-        } else {
+      } 
+      else {
           alert('Error al unirse a la sala');
-        }
+       }
       }
     );
   }

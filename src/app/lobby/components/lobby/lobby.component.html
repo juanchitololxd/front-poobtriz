@@ -1,1 +1,21 @@
-<p>lobby works!</p>
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Partida en Linea</title>
+  </head>
+  <body *ngIf="lobby">
+    <div class="container">
+      <h1>Tu código de partida es:</h1>
+      <p>{{ codigoPartida }}</p>
+      <h3>Jugadores:</h3>
+      <div class="inline">
+        <p-chip [label]="player.nick" *ngFor="let player of  lobby.players"></p-chip>
+      </div>
+      <button (click)="comenzarPartida()">Comenzar</button>
+    </div>
+
+
+  </body>
+</html>
+
