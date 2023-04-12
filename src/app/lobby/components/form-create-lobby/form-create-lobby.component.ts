@@ -18,9 +18,7 @@ export class FormCreateLobbyComponent {
   }
 
   crearPartida() {
-    const nick = JSON.parse(localStorage.getItem('nick')!);
-    const lobby = {nombre: this.nombrePartida, admin: nick };
-    this.lobbyService.crearLobby(nick).then(
+    this.lobbyService.crearLobby(this.nombrePartida).then(
 
       (respuesta: Lobby|undefined) => {
         if (respuesta){
