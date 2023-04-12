@@ -10,6 +10,14 @@ import { Tablero } from 'src/app/shared/models/Tablero.model';
 })
 export class LobbyService {
 
+  async joinLobby(codigo: number) {
+    return await firstValueFrom(this.http.get(`${this.baseUrl}/lobbies/${codigo}`)).then(
+      (res : any) => <Lobby> res)
+
+      .catch((error: any) => {console.log(error)
+      return undefined})
+  }
+
   private baseUrl = 'http://localhost:8081'; // URL de la API
 
   constructor(private http: HttpClient) {}
