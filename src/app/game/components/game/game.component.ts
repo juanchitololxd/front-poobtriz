@@ -19,7 +19,7 @@ export class GameComponent implements OnInit {
   blockedDocument = true;
   constructor(
     private route: ActivatedRoute){
-      this.nick = localStorage.getItem("username")
+      this.nick = localStorage.getItem("nick")
   }
 
   ngOnInit(): void {
