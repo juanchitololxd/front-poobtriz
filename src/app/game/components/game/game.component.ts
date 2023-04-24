@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap } from '@angular/router';
+import { environment } from 'src/environments/environment';
 import { Estado, Lobby } from 'src/app/shared/models/Lobby.model';
 import { Tablero } from 'src/app/shared/models/Tablero.model';
 import { Websocket, WebsocketBuilder } from 'websocket-ts/lib';
@@ -49,7 +50,7 @@ export class GameComponent implements OnInit {
   instanceWS(codigo: any){
     if (this.ws) this.ws.close();
 
-    this.ws = new WebsocketBuilder(`ws://localhost:8081/game/${this.nick}/${codigo}`)
+    this.ws = new WebsocketBuilder(`${environment.wsGame}/game/${this.nick}/${codigo}`)
     .onOpen((ws, e) => { console.log("ABIERTO"); })
     .onClose((ws, e) => { console.log("CLOSED") })
     .onError((ws, e) => { console.log("error") })

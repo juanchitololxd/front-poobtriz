@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { environment } from 'src/environments/environment';
 import { Lobby } from 'src/app/shared/models/Lobby.model';
 import { WebsocketBuilder } from 'websocket-ts/lib';
 
@@ -27,7 +28,7 @@ export class LobbyComponent implements OnInit {
 
     this._activatedRoute.params.subscribe((parameter : any) => {
       this.codigoPartida = parameter.id;
-      this.ws = new WebsocketBuilder(`ws://localhost:8081/lobby/${localStorage.getItem('nick')!}/${this.codigoPartida}`)
+      this.ws = new WebsocketBuilder(`${environment.wsLobby}lobby/${localStorage.getItem('nick')!}/${this.codigoPartida}`)
       .onMessage((ws, e) => this.lobby = JSON.parse(e.data))
       .onClose((ws, e) => this.comenzarPartida()).build();
     })
