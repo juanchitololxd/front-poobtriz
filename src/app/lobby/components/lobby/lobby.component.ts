@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
 import { Lobby } from 'src/app/shared/models/Lobby.model';
@@ -10,7 +10,7 @@ import { WebsocketBuilder } from 'websocket-ts/lib';
   styleUrls: ['./lobby.component.scss']
 })
 
-export class LobbyComponent implements OnInit {
+export class LobbyComponent implements OnInit, OnDestroy {
   codigoPartida!: string;
   public ws: any;
   usuarios: String[]=[];
@@ -37,6 +37,10 @@ export class LobbyComponent implements OnInit {
 
   comenzarPartida(): void {
     this._router.navigateByUrl(`/game/${this.codigoPartida}`)
+  }
+
+  ngOnDestroy(): void {
+    this.ws.close();
   }
 
 

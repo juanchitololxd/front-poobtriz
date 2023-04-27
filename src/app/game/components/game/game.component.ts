@@ -61,7 +61,7 @@ export class GameComponent implements OnInit {
 
   onMessage(param: Lobby){
     this.lobby = param;
-    if (this.lobby.estado.toString() == Estado[Estado.RUNNING]) this.blockedDocument = false;
+    if (this.lobby.estado == Estado[Estado.RUNNING]) this.blockedDocument = false;
 
 
     this.tablero = this.lobby.players.find(p => p.nick == this.nick)?.tablero;
