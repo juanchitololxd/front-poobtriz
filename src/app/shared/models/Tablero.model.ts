@@ -1,10 +1,9 @@
+import { Reborde } from "./Reborde.model";
+
 export class Tablero {
   constructor(
-      public cols: number,
-      public filas: number,
-      public background: string[][],
-      public bgReborde: string[][],
-      public puntuacion: number
+      public background: string[][] = [],
+      public bgReborde: Reborde[][] = [],
+      public puntuacion: number = 0
     ){}
-
 }

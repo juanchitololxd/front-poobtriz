@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { Reborde } from 'src/app/shared/models/Reborde.model';
 
 @Component({
   selector: 'app-block',
@@ -7,5 +8,5 @@ import { Component, Input } from '@angular/core';
 })
 export class BlockComponent {
   @Input() color!: string;
-  @Input() reborde!: string;
+  @Input() reborde: Reborde | undefined;
 }
