@@ -1,6 +1,22 @@
 <div class="tetris-board" *ngIf="tablero">
     <span *ngFor="let row of tablero.background; let i =index">
-      <span *ngFor="let bloque of row; let j=index"><app-block class="bloque" [color]="bloque" [reborde]="tablero.bgReborde[i][j]"></app-block></span>
+      <span *ngFor="let bloque of row; let j=index">
+        <div [ngClass]="{
+          'block': true,
+          'border-left': tablero.bgReborde[i][j]  && j-1 >= 0 && !tablero.bgReborde[i][j-1],
+          'border-right': tablero.bgReborde[i][j]  && j+1 < tablero.bgReborde[0].length && !tablero.bgReborde[i][j+1],
+          'border-top': tablero.bgReborde[i][j]  && i-1 >= 0 && !tablero.bgReborde[i-1][j],
+          'border-bottom': tablero.bgReborde[i][j]  && i+1 < tablero.bgReborde.length && !tablero.bgReborde[i+1][j],
+
+          'no-left': !tablero.bgReborde[i][j] && j-1 >= 0 && tablero.bgReborde[i][j-1],
+          'no-right': !tablero.bgReborde[i][j] && j+1 < tablero.bgReborde[0].length && tablero.bgReborde[i][j+1],
+          'no-top': !tablero.bgReborde[i][j] && i-1 >= 0 && tablero.bgReborde[i-1][j],
+          'no-bottom': !tablero.bgReborde[i][j]  && i+1 < tablero.bgReborde.length && tablero.bgReborde[i+1][j]
+      }" [style.background]="bloque"
+        [style.border-color]="tablero.bgReborde[i][j]  ? tablero.bgReborde[i][j].color : 'black'">
+
+        </div>
+      </span>
     </span>
 </div>
 
