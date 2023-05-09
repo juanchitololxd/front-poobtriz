@@ -1,6 +1,6 @@
 export class Reborde {
   constructor(
-    public color: string
+    public color: string = "yellow"
   ) {
 
   }
