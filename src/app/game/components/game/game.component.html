@@ -1,7 +1,8 @@
 <app-blocked [blocked]="blockedDocument" message="Esperando a que se conecten todos los jugadores"></app-blocked>
 
 <div class="container" *ngIf="lobby && !blockedDocument">
-  <app-board *ngIf="tablero" [tablero]="tablero"></app-board>
+  <app-board *ngIf="tablero" [background]="tablero.background" [bgReborde]="tablero.bgReborde" [buffo]="tablero.buffo"></app-board>
+  <app-board *ngIf="nextPiece" [background]="nextPiece.bg" [bgReborde]="nextPiece.bgReborde"></app-board>
   <p-table [value]="lobby.players">
     <ng-template pTemplate="header">
       <tr>

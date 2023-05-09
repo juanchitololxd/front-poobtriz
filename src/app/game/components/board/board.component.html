@@ -1,23 +1,23 @@
-<div class="tetris-board" *ngIf="tablero">
-    <span *ngFor="let row of tablero.background; let i =index">
-      <span *ngFor="let color of row; let j=index">
-        <div [ngClass]="{
-          'square': true,
-          'border-left': tablero.bgReborde[i][j]  && j-1 >= 0 && !tablero.bgReborde[i][j-1],
-          'border-right': tablero.bgReborde[i][j]  && j+1 < tablero.bgReborde[0].length && !tablero.bgReborde[i][j+1],
-          'border-top': tablero.bgReborde[i][j]  && i-1 >= 0 && !tablero.bgReborde[i-1][j],
-          'border-bottom': tablero.bgReborde[i][j]  && i+1 < tablero.bgReborde.length && !tablero.bgReborde[i+1][j],
+<div class="tetris-board">
+  <span *ngFor="let row of background; let i =index">
+    <span *ngFor="let color of row; let j=index">
+      <div [ngClass]="{
+        'square': true,
+        'border-left': bgReborde[i][j]  && j-1 >= 0 && !bgReborde[i][j-1],
+        'border-right': bgReborde[i][j]  && j+1 < bgReborde[0].length && !bgReborde[i][j+1],
+        'border-top': bgReborde[i][j]  && i-1 >= 0 && !bgReborde[i-1][j],
+        'border-bottom': bgReborde[i][j]  && i+1 < bgReborde.length && !bgReborde[i+1][j],
 
-          'no-left': !tablero.bgReborde[i][j] && j-1 >= 0 && tablero.bgReborde[i][j-1],
-          'no-right': !tablero.bgReborde[i][j] && j+1 < tablero.bgReborde[0].length && tablero.bgReborde[i][j+1],
-          'no-top': !tablero.bgReborde[i][j] && i-1 >= 0 && tablero.bgReborde[i-1][j],
-          'no-bottom': !tablero.bgReborde[i][j]  && i+1 < tablero.bgReborde.length && tablero.bgReborde[i+1][j]
-      }" [style.background]="color"
-      [class]="tablero.buffo && tablero.buffo.x == j && tablero.buffo.y == i ? tablero.buffo.tipo : ''"
-      [style.border-color]="tablero.buffo && tablero.buffo.x == j && tablero.buffo.y == i ? 'black': tablero.bgReborde[i][j]  ? tablero.bgReborde[i][j].color : 'black'">
+        'no-left': !bgReborde[i][j] && j-1 >= 0 && bgReborde[i][j-1],
+        'no-right': !bgReborde[i][j] && j+1 < bgReborde[0].length && bgReborde[i][j+1],
+        'no-top': !bgReborde[i][j] && i-1 >= 0 && bgReborde[i-1][j],
+        'no-bottom': !bgReborde[i][j]  && i+1 < bgReborde.length && bgReborde[i+1][j]
+    }" [style.background]="color"
+    [class]="buffo && buffo.x == j && buffo.y == i ? buffo.tipo : ''"
+    [style.border-color]="buffo && buffo.x == j && buffo.y == i ? 'black': bgReborde[i][j]  ? bgReborde[i][j].color : 'black'">
 
-        </div>
-      </span>
+      </div>
     </span>
+  </span>
 </div>
 

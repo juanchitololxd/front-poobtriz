@@ -4,6 +4,7 @@ import { environment } from 'src/environments/environment';
 import { Estado, Lobby } from 'src/app/shared/models/Lobby.model';
 import { Tablero } from 'src/app/shared/models/Tablero.model';
 import { Websocket, WebsocketBuilder } from 'websocket-ts/lib';
+import { Reborde } from 'src/app/shared/models/Reborde.model';
 
 
 @Component({
@@ -17,6 +18,11 @@ export class GameComponent implements OnInit {
   public lobby!: Lobby;
   public nick: string | null;
   public ws!: Websocket;
+
+  public nextPiece!: {
+    bg: string[][],
+    bgReborde: Reborde[][]
+  }
   blockedDocument = true;
   constructor(
     private route: ActivatedRoute){
@@ -62,9 +68,40 @@ export class GameComponent implements OnInit {
   onMessage(param: Lobby){
     this.lobby = param;
     if (this.lobby.estado == Estado[Estado.RUNNING]) this.blockedDocument = false;
-
-
     this.tablero = this.lobby.players.find(p => p.nick == this.nick)?.tablero;
+
+    this.createNextPieceBoard();
+  }
+
+  private createNextPieceBoard(){
+    let bg: string[][] = [];
+    let bgReborde: Reborde[][] = [];
+    let colorBg = "gray";
+    if (this.tablero && this.tablero.nextPiece){
+      for (let index = 0; index < this.tablero.nextPiece.height + 2; index++) {
+        let bgRow = [];
+        let rebordeRow = [];
+        for (let col = 0; col < this.tablero.nextPiece.width + 2; col++) {
+          bgRow.push(colorBg)
+          rebordeRow.push(new Reborde("black"));
+        }
+        bg.push(bgRow);
+        bgReborde.push(rebordeRow);
+      }
+
+      this.tablero.nextPiece.coordenadas.forEach(coord => {
+        if (this.tablero) {
+          bg[coord[1]+1][coord[0]+1] = this.tablero.nextPiece.color;
+          bgReborde[coord[1]+1][coord[0]+1] = this.tablero.nextPiece.reborde;
+        }
+      });
+
+      this.nextPiece = {
+        bg: bg,
+        bgReborde: bgReborde
+      }
+    }
+
   }
 
 }
