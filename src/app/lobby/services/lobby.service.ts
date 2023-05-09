@@ -2,8 +2,6 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { firstValueFrom } from 'rxjs';
 import { Lobby } from 'src/app/shared/models/Lobby.model';
-import { Player } from 'src/app/shared/models/Player.model';
-import { Tablero } from 'src/app/shared/models/Tablero.model';
 
 @Injectable({
   providedIn: 'root'
@@ -24,7 +22,7 @@ export class LobbyService {
 
   async crearLobby(nick: string) {
 
-    let lobby = Lobby.instanceEmptyLobby(nick, 15, 10, 1500);
+    let lobby = Lobby.instanceEmptyLobby(nick, 15, 10, 1000);
     return await firstValueFrom(this.http.post(`${this.baseUrl}/lobbies`, lobby)).then(
       (res : any) => <Lobby> res)
 

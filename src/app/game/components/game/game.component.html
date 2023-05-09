@@ -2,8 +2,6 @@
 
 <div class="container" *ngIf="lobby && !blockedDocument">
   <app-board *ngIf="tablero" [tablero]="tablero"></app-board>
-  <p>{{tablero?.buffo?.tipo}}</p>
-  <p>{{tablero?.buffo?.x}}</p>
   <p-table [value]="lobby.players">
     <ng-template pTemplate="header">
       <tr>
