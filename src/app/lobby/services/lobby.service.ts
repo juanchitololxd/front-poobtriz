@@ -23,7 +23,7 @@ export class LobbyService {
 
   async crearLobby(nick: string) {
 
-    let lobby = Lobby.instanceEmptyLobby(nick, 15, 10, 1000);
+    let lobby = Lobby.instanceEmptyLobby(nick, 12, 8, 1000);
     return await firstValueFrom(this.http.post(`${this.baseUrl}/lobbies`, lobby)).then(
       (res : any) => <Lobby> res)
 
