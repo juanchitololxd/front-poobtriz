@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { firstValueFrom } from 'rxjs';
 import { Lobby } from 'src/app/shared/models/Lobby.model';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +17,7 @@ export class LobbyService {
       return undefined})
   }
 
-  private baseUrl = 'http://localhost:8081'; // URL de la API
+  private baseUrl = environment.lobby; // URL de la API
 
   constructor(private http: HttpClient) {}
 
