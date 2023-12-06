@@ -8,7 +8,7 @@ import { LandingComponent } from './landing/landing.component';
   imports: [  RouterModule.forChild([
     { path: '', component: LandingComponent },
     { path: 'lobby/create', component: FormCreateLobbyComponent}
-
+    ,{path: "**", redirectTo: '/lobby/create', pathMatch:"full"}
   ])],
 
 

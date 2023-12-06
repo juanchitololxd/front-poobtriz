@@ -21,9 +21,9 @@ export class LobbyService {
 
   constructor(private http: HttpClient) {}
 
-  async crearLobby(nick: string) {
+  async crearLobby(nick: string, addBot: boolean) {
 
-    let lobby = Lobby.instanceEmptyLobby(nick, 12, 8, 1000);
+    let lobby = Lobby.instanceEmptyLobby(nick, 12, 8, 1000, addBot);
     return await firstValueFrom(this.http.post(`${this.baseUrl}/lobbies`, lobby)).then(
       (res : any) => <Lobby> res)
 

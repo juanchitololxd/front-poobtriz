@@ -11,14 +11,16 @@ export class Lobby{
       public estado: string = "CREATED",
       public velocity = 2000,
       public admin: Player | undefined = undefined,
-
+      public bot: Player | undefined = undefined,
   ){
     if (players.length > 0) this.admin = players[0];
   }
 
-  public static instanceEmptyLobby(nick: string, filas: number, cols: number, velocity: number): Lobby{
+  public static instanceEmptyLobby(nick: string, filas: number, cols: number, velocity: number, addBot: boolean): Lobby{
     let admn =new Player(nick, new Tablero());
-    return new Lobby(0, [admn], filas, cols,"CREATED", velocity, admn);
+    let bot = addBot ? structuredClone(admn) : undefined;
+    if (bot) bot.nick = "BOT";
+    return new Lobby(0, [admn], filas, cols,"CREATED", velocity, admn, bot);
   }
 }
 

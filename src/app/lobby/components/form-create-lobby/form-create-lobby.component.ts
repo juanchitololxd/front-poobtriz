@@ -1,6 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { LobbyService } from 'src/app/lobby/services/lobby.service';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Lobby } from 'src/app/shared/models/Lobby.model';
 
 
@@ -9,16 +9,24 @@ import { Lobby } from 'src/app/shared/models/Lobby.model';
   templateUrl: './form-create-lobby.component.html',
   styleUrls: ['./form-create-lobby.component.scss']
 })
-export class FormCreateLobbyComponent {
+export class FormCreateLobbyComponent implements OnInit {
   nombrePartida!: string;
+  addBot: boolean = false;
 
-  constructor(private lobbyService: LobbyService, private router: Router) {}
+  constructor(private lobbyService: LobbyService,
+    private router: Router,
+    private route: ActivatedRoute
+    ) {}
 
   ngOnInit(): void {
+    this.route.queryParams.forEach((param) => {
+
+      this.addBot = param && param["bot"] == "1" ? true : false;
+    })
   }
 
   crearPartida() {
-    this.lobbyService.crearLobby(this.nombrePartida).then(
+    this.lobbyService.crearLobby(this.nombrePartida, this.addBot).then(
 
       (respuesta: Lobby|undefined) => {
         if (respuesta){

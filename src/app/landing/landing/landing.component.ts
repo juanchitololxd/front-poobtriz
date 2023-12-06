@@ -9,15 +9,9 @@ import { Router } from '@angular/router';
 export class LandingComponent {
   constructor(private router: Router) { }
 
-  ngOnInit(): void {
+  redirect(ruta: string) {
+    this.router.navigateByUrl(ruta);
   }
 
-  irAPantalla1() {
-    this.router.navigate(['/lobby/create']);
-  }
-
-  irAPantalla2() {
-    this.router.navigate(['/lobby/connect']);
-  }
 
 }

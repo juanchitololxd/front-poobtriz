@@ -3,9 +3,9 @@
         <h1 class="ventana-principal-title">POOBTRIZ</h1>
         <h2 class="ventana-principal-subtitle">Elige un modo de juego:</h2>
           <div class="ventana-principal-buttons">
-
-              <button class="btn btn-2" (click)="irAPantalla1()">Crear partida en línea</button>
-              <button class="btn btn-3"  (click)="irAPantalla2()">Conectarme a partida</button>
+              <button class="btn btn-2" (click)="redirect('/lobby/create')">Crear partida en línea</button>
+              <button class="btn btn-3"  (click)="redirect('/lobby/connect')">Conectarme a partida</button>
+              <button class="btn btn-1"  (click)="redirect('/lobby/create?bot=1')">Jugar contra un robot</button>
           </div>
     </div>
   </div>
