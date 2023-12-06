@@ -1,8 +1,8 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { environment } from 'src/environments/environment';
 import { Lobby } from 'src/app/shared/models/Lobby.model';
 import { WebsocketBuilder } from 'websocket-ts/lib';
+import { GatewayService } from 'src/app/shared/services/gateway.service';
 
 @Component({
   selector: 'app-lobby',
@@ -21,16 +21,21 @@ export class LobbyComponent implements OnInit, OnDestroy {
 
   constructor(
     private _router: Router,
-    private _activatedRoute: ActivatedRoute
+    private _activatedRoute: ActivatedRoute,
+    private _gatewayService: GatewayService
   ) { }
 
   ngOnInit(): void {
 
     this._activatedRoute.params.subscribe((parameter : any) => {
       this.codigoPartida = parameter.id;
-      this.ws = new WebsocketBuilder(`${environment.wsLobby}lobby/${localStorage.getItem('nick')!}/${this.codigoPartida}`)
+
+      let server =this._gatewayService.getAvailableServer(+this.codigoPartida);
+      console.log(server)
+      this.ws = new WebsocketBuilder(`${server}lobby/${localStorage.getItem('nick')!}/${this.codigoPartida}`)
       .onMessage((ws, e) => this.lobby = JSON.parse(e.data))
-      .onClose((ws, e) => this.comenzarPartida()).build();
+      .onClose((ws, e) => this.comenzarPartida())
+      .build();
     })
 
   }

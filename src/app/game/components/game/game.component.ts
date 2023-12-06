@@ -5,6 +5,7 @@ import { Estado, Lobby } from 'src/app/shared/models/Lobby.model';
 import { Tablero } from 'src/app/shared/models/Tablero.model';
 import { Websocket, WebsocketBuilder } from 'websocket-ts/lib';
 import { Reborde } from 'src/app/shared/models/Reborde.model';
+import { GatewayService } from 'src/app/shared/services/gateway.service';
 
 
 @Component({
@@ -25,7 +26,8 @@ export class GameComponent implements OnInit {
   }
   blockedDocument = true;
   constructor(
-    private route: ActivatedRoute){
+    private route: ActivatedRoute,
+    private gwService: GatewayService){
       this.nick = localStorage.getItem("nick")
   }
 
@@ -56,7 +58,9 @@ export class GameComponent implements OnInit {
   instanceWS(codigo: any){
     if (this.ws) this.ws.close();
 
-    this.ws = new WebsocketBuilder(`${environment.wsGame}/game/${this.nick}/${codigo}`)
+    let server = this.gwService.getAvailableServer(codigo);
+    console.log(server)
+    this.ws = new WebsocketBuilder(`${server}game/${this.nick}/${codigo}`)
     .onOpen((ws, e) => { console.log("ABIERTO"); })
     .onClose((ws, e) => { console.log("CLOSED") })
     .onError((ws, e) => { console.log("error") })

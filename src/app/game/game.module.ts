@@ -7,6 +7,8 @@ import { GameService } from './services/game.service';
 import { GameRoutingModule } from './game-routing.module';
 import { SharedModule } from './../shared/shared.module';
 import { BoardComponent } from './components/board/board.component';
+import { GatewayService } from '../shared/services/gateway.service';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -18,8 +20,9 @@ import { BoardComponent } from './components/board/board.component';
     CommonModule,
     GameRoutingModule,
     SharedModule,
+    HttpClientModule
 
   ],
-  providers: [GameService]
+  providers: [GameService, GatewayService]
 })
 export class GameModule { }

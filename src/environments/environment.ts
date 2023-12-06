@@ -1,6 +1,5 @@
 export const environment = {
   production: false,
-  wsGame: "ws://localhost:8081/",
-  wsLobby: "ws://localhost:8081/",
-  lobby: "http://localhost:8081/"
+  gateway: "http://ec2-54-90-230-106.compute-1.amazonaws.com:8080/",
+  lobby: "http://ec2-54-90-80-176.compute-1.amazonaws.com:8082/"
 };

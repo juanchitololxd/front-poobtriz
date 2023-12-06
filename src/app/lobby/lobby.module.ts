@@ -9,6 +9,7 @@ import { SharedModule } from '../shared/shared.module';
 import { HttpClientModule } from '@angular/common/http';
 import {CardModule} from 'primeng/card';
 import { ChipModule } from 'primeng/chip';
+import { GatewayService } from '../shared/services/gateway.service';
 
 
 
@@ -26,6 +27,6 @@ import { ChipModule } from 'primeng/chip';
     CardModule,
     ChipModule
   ],
-  providers: [LobbyService]
+  providers: [LobbyService, GatewayService]
 })
 export class LobbyModule { }
