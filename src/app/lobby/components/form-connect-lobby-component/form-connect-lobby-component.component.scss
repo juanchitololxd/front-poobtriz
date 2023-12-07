@@ -5,20 +5,20 @@
     align-items: center;
     height: 100vh;
 
-    background-image: url('/assets/juego1.jpg');
+    background-image: url('./assets/juego1.jpg');
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center center;
     background-repeat: no-repeat;
   }
-  
+
   h1 {
     font-size: 3rem;
     margin-bottom: 2rem;
     color: #070707;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
   }
-  
+
   .form {
     display: flex;
     flex-direction: column;
@@ -29,12 +29,12 @@
     border-radius: 1rem;
     box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
   }
-  
+
   label {
     font-size: 1.5rem;
     margin-bottom: 1rem;
   }
-  
+
   input {
     width: 100%;
     padding: 1rem;
@@ -43,7 +43,7 @@
     border-radius: 0.5rem;
     margin-bottom: 2rem;
   }
-  
+
   button {
     background-color: #4caf50;
     color: #fff;
@@ -54,8 +54,7 @@
     cursor: pointer;
     transition: background-color 0.3s ease;
   }
-  
+
   button:hover {
     background-color: #3e8e41;
   }
-  
